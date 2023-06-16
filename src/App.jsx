@@ -5,21 +5,21 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import CardFront from './components/CardFront';
-import  { useState } from 'react';
+import Ty from './Ty';
+import { useState } from 'react';
 
 
-const App = () => {
-  const [cardHolderName, setCardHolderName] = useState('');
-  
+
+
+
+
   
   const validationSchema = Yup.object().shape({
 
    
 
 
-
-
-    cardHolder: Yup.string()
+    cardHolderName: Yup.string()
     .label('Name on card')
     .required("Holder's Card Name is required"),
 
@@ -37,12 +37,12 @@ const App = () => {
     cvc: Yup.string()
       .label('CVC')
       .matches(/^\d+$/, {
-        message: 'CVC must contain only numbers',
+        message: "Can't be blank",
         excludeEmptyString: true,
       })
       .min(3)
       .max(4)
-      .required("CVC number is required"),
+      .required("Can't be blank"),
 
 
 
@@ -50,68 +50,100 @@ const App = () => {
       .label('Expiry month')
       .min(2)
       .max(2)
-      .required("Can't be blank"),
+      .required("Can't be blaeeeeeeenk"),
 
 
 
 
     expiryYear: Yup.string()
       .label('Expiry year')
-      .min(4)
-      .max(4)
+      .min(2)
+      .max(2)
       .required("Can't be blank"),
   });
 
-  const { handleSubmit, register, formState: { errors } } = useForm({
+
+  const App = () => {
+
+    const [showTy, setShowTy] = useState(false);
+   
+    
+const handleClick = () => {
+  setShowTy(true);
+};
+
+  const { handleSubmit, watch, register, formState: { errors } } = useForm({
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const cardHolderName = watch('cardHolderName', 'JANE APPLESSED');
+  const cardNumber = watch('cardNumber', '0000 0000 0000 0000');
+  const expiryMonth = watch('expiryMonth', '00');
+  const expiryYear = watch('expiryYear', '00');
+  const cvc = watch('cvc', '000');
+
+
+  
+  const onSubmitHandler = (data) => {
+    console.log({ data });
+    handleClick();
   };
 
+
+
+  if (showTy) {
+    return <Ty cvc={cvc} cardHolderName={cardHolderName} cardNumber={cardNumber} expiryMonth={expiryMonth}  expiryYear={expiryYear} />;
+  }
+
   return (
-    <div className="flex w-screen">
-      <section className="w-1/3 relative">
-        <div className="h-screen">
-          <img src="./src/images/bgM.png" alt="React Image" className="object-cover h-full w-full" />
-        </div>
-        <div className="fixed">
-          <CardBack />
+    <div className=" md:flex md:w-screen">
+      <section className=" md:w-1/3 md:relative">
+
+
+        <div className=" md:h-screen">
+          <img src="./src/images/bgD.png" alt="React Image" className="hidden md:block object-cover absolute h-full w-full" />
         </div>
 
-        <div className="sticky mt-10">
-          <CardFront className="text-white" cardHolderName={cardHolderName}/>
+        <div className="w-full">
+          <img src="./src/images/bgM.png" alt="React Image" className="block md:hidden object-cover h-full w-full" />
+        </div>
+
+        
+        <div className="fixed">
+          <CardBack className="text-white" cvc={cvc}/>
+        </div>
+
+        <div className="fixed">
+          <CardFront className="text-white" cardHolderName={cardHolderName} cardNumber={cardNumber} expiryMonth={expiryMonth}  expiryYear={expiryYear}/>
         </div>
 
       </section>
 
 
 {/* FORM */}
-      <section className="w-2/3 flex items-center justify-center">
+      <section className="mx-10 md:mx-0 md:w-2/3 flex mt-10 md:mt-0 items-center justify-center">
         <div className="w-96">
 
 
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmitHandler)}>
             <p className="mb-1 text-xs font-space-grotesk">CARDHOLDER NAME</p>
             <input
-              className="border border-purple-700 rounded-lg p-2 mb-4 w-full outline-purple-800"
-              placeholder="Card's Name"
+              className="border border-zinc-200 text-zinc-100 font-space-grotesk rounded-lg pl-4 p-2 mb-4 w-full outline-purple-800"
+              placeholder="e.g. Jane Appleseed"
               name="cardHolderName"
-              onChange={(e) => setCardHolderName(e.target.value)}
-              {...register('cardHolder', { required: true })}/>
-               {errors.cardHolder && (
-              <span className="text-xs text-red text-red-600 flex font-space-grotesk">{errors.cardHolder.message}</span>
+              {...register('cardHolderName', { required: true })}/>
+               {errors.cardHolderName && (
+              <span className="text-xs text-red text-red-600 flex font-space-grotesk">{errors.cardHolderName.message}</span>
             )}
               
             
 
               <p className="mt-4 mb-1 text-xs font-space-grotesk">CARD NUMBER</p>
             <input
-              className="border border-purple-700  rounded-lg p-2 mb-4 w-full outline-purple-800"
-              placeholder='Card Number'
+              className="border border-zinc-200 text-zinc-100 font-space-grotesk  rounded-lg pl-4  p-2 mb-4 w-full outline-purple-800"
+              placeholder='e.g. 1234 5678 9123 0000'
               name="cardNumber"
-              {...register('cardNumber')}
+              {...register('cardNumber', { required: true })}
             />
             {errors.cardNumber && (
               <span className="text-xs text-red text-red-600 flex font-space-grotesk">{errors.cardNumber.message}</span>
@@ -121,14 +153,14 @@ const App = () => {
 
 
 
-            <div className="mt-4 mb-1 flex text-xs font-space-grotesk">
+            <div className="mt-4 mb-1 flex text-xs font-space-grotesk justify-between">
               <div>
-                <p>EXP. DATE (MM/YY)</p>
+                <p className='mb-2'>EXP. DATE (MM/YY)</p>
                 <input
-                  className="border border-purple-700  rounded-lg p-3 mb-4 w-20 text-center mr-2 outline-purple-800"
+                  className="border border-zinc-200 font-space-grotesk rounded-lg p-3 mb-4 w-16 md:w-20 text-center mr-4 outline-purple-800"
                   placeholder="MM"
                   name="expiryMonth"
-                  {...register('MM')}
+                  {...register('expiryMonth', { required: true })}
                 />
                 {errors.cvc && (
               <span className="text-xs text-red text-red-600 flex font-space-grotesk">{errors.expiryMonth.message}</span>
@@ -138,12 +170,12 @@ const App = () => {
 
 
                 <input
-                  className="border border-purple-700 rounded-lg p-3 mb-4 w-20 text-center outline-purple-800"
+                  className="border border-zinc-200  rounded-lg p-3 mb-4 w-16 md:w-20 text-center outline-purple-800"
                   placeholder="YY"
                   name="expiryYear"
-                  {...register('YY')}
+                  {...register('expiryYear', { required: true })}
                 />
-                {errors.cvc && (
+                {errors.expiryYear && (
               <span className="text-xs text-red-600 flex font-space-grotesk">{errors.expiryYear.message}</span>
             )}
 
@@ -152,12 +184,12 @@ const App = () => {
               </div>
 
               <div>
-                <p>CVC</p>
+                <p className='mb-2'>CVC</p>
                 <input
-                  className="border border-purple-700 ml-4 rounded-lg p-3 px-4 mb-2 w-full text-start outline-purple-800"
+                  className="border border-zinc-200  text- rounded-lg p-3  mb-2 w-32 md:w-full text-start outline-purple-800"
                   placeholder="e.g. 123"
                   name="cvc"
-                  {...register('CVC')}
+                  {...register('cvc', { required: true })}
                 /> 
                 {errors.cvc && (
               <span className="text-xs text-red text-red-600 flex font-space-grotesk">{errors.cvc.message}</span>
@@ -166,7 +198,7 @@ const App = () => {
               </div>
             </div> 
 
-            <button type="submit" className="rounded-lg bg-purple-900 text-center text-white w-full p-3 mt-2">
+            <button type="submit" className="rounded-lg bg-purple-900 text-center text-white w-full p-3 mt-2" >
               Confirm
             </button>
           </form>
