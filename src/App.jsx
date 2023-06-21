@@ -68,7 +68,7 @@ const App = () => {
         resolver: yupResolver(validationSchema),
       });
 
-  const cardHolderName = watch('cardHolderName', 'JANE APPLESSED');
+  const cardHolderName = watch('cardHolderName', 'MIKE PINE');
   const cardNumber = watch('cardNumber', '0000 0000 0000 0000');
   const expiryMonth = watch('expiryMonth', '00');
   const expiryYear = watch('expiryYear', '00');
@@ -89,7 +89,7 @@ const App = () => {
 
   return (
     <div className="md:flex md:w-screen">
-      <section className=" md:w-1/3 md:relative">
+      <section className=" md:w-1/3 md:relative -z-50">
 
 
         <div className=" md:h-screen">

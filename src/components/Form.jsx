@@ -12,7 +12,7 @@ function Form({ handleSubmit, errors, register, onSubmitHandler }) {
     <p className="mb-1 text-xs font-space-grotesk">CARDHOLDER NAME</p>
     <input
       className="border border-zinc-200 text-zinc-900 font-space-grotesk rounded-lg pl-4 p-2 mb-4 w-full outline-purple-800"
-      placeholder="e.g. Jane Appleseed"
+      placeholder="e.g. Miike Piine"
       name="cardHolderName"
       {...register('cardHolderName', { required: true })}/>
        {errors.cardHolderName && (
