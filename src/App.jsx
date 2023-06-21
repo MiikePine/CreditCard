@@ -7,6 +7,7 @@ import * as Yup from 'yup';
 import CardFront from './components/CardFront';
 import Ty from './Ty';
 import { useState } from 'react';
+import Form from './components/Form';
 
   const validationSchema = Yup.object().shape({
 
@@ -108,9 +109,11 @@ const App = () => {
 
       </section>
 
+      <Form handleSubmit={handleSubmit(onSubmitHandler)} errors={errors} register={register}  onSubmitHandler={onSubmitHandler}/>
+
 
 {/* FORM */}
-      <section className="mx-10 md:mx-0 md:w-2/3 flex mt-20 md:mt-0 items-center justify-center">
+      {/* <section className="mx-10 md:mx-0 md:w-2/3 flex mt-20 md:mt-0 items-center justify-center">
         <div className="w-96">
 
 
@@ -192,7 +195,7 @@ const App = () => {
             </button>
           </form>
         </div>
-      </section>
+      </section> */}
 
       {/* FORM */}
     </div>
