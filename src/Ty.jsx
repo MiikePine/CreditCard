@@ -1,13 +1,15 @@
 
 import CardBack from "./components/CardBack"
 import CardFront from "./components/CardFront"
+import bgD from './images/bgD.png';
+
 
 function Ty ({cvc, cardHolderName, cardNumber, expiryMonth, expiryYear}) {
     return (
         <div className="flex w-screen">
             <section className="w-1/3 relative">
                 <div className="h-screen">
-                    <img src="./src/images/bgM.png" alt="React Image" className="object-cover h-full w-full" />
+                    <img src={bgD} alt="React Image" className="object-cover h-full w-full" />
                 </div>
                 {/* <div className="sticky">
                     <CardBack className="text-white" cvc={cvc} />
