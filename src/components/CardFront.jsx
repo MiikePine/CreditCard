@@ -1,6 +1,6 @@
 import Ty from "../Ty"
-import visa from './images/visa.png';
-import visaF from './images/visaF.png';
+import visa from '../images/visa.png';
+import visaF from '../images/visaF.png';
 
 
 

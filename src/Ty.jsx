@@ -4,6 +4,7 @@ import CardFront from "./components/CardFront"
 import bgD from './images/bgD.png';
 
 
+
 function Ty ({cvc, cardHolderName, cardNumber, expiryMonth, expiryYear}) {
     return (
         <div className="flex w-screen">
@@ -11,11 +12,7 @@ function Ty ({cvc, cardHolderName, cardNumber, expiryMonth, expiryYear}) {
                 <div className="h-screen">
                     <img src={bgD} alt="React Image" className="object-cover h-full w-full" />
                 </div>
-                {/* <div className="sticky">
-                    <CardBack className="text-white" cvc={cvc} />
-                </div>
-         */}
-                <div className="sticky mt-10">
+               <div className="sticky mt-10">
                     <CardFront
                         cardHolderName={cardHolderName}
                         cardNumber={cardNumber}

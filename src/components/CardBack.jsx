@@ -1,4 +1,4 @@
-import visa from './images/visa.png';
+import visa from '../images/visa.png';
 
 
 
