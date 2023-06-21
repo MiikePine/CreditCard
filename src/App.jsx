@@ -8,15 +8,7 @@ import CardFront from './components/CardFront';
 import Ty from './Ty';
 import { useState } from 'react';
 
-
-
-
-
-
-  
   const validationSchema = Yup.object().shape({
-
-   
 
 
     cardHolderName: Yup.string()
@@ -33,7 +25,7 @@ import { useState } from 'react';
     .max(16)
     .required('Card number is required'),
 
-
+  
     cvc: Yup.string()
       .label('CVC')
       .matches(/^\d+$/, {
@@ -53,8 +45,6 @@ import { useState } from 'react';
       .required("Can't be blaeeeeeeenk"),
 
 
-
-
     expiryYear: Yup.string()
       .label('Expiry year')
       .min(2)
@@ -63,18 +53,16 @@ import { useState } from 'react';
   });
 
 
-  const App = () => {
+const App = () => {
+      const [showTy, setShowTy] = useState(false);
+     
+      const handleClick = () => {
+        setShowTy(true);
+      };
 
-    const [showTy, setShowTy] = useState(false);
-   
-    
-const handleClick = () => {
-  setShowTy(true);
-};
-
-  const { handleSubmit, watch, register, formState: { errors } } = useForm({
-    resolver: yupResolver(validationSchema),
-  });
+      const { handleSubmit, watch, register, formState: { errors } } = useForm({
+        resolver: yupResolver(validationSchema),
+      });
 
   const cardHolderName = watch('cardHolderName', 'JANE APPLESSED');
   const cardNumber = watch('cardNumber', '0000 0000 0000 0000');
@@ -96,7 +84,7 @@ const handleClick = () => {
   }
 
   return (
-    <div className=" md:flex md:w-screen">
+    <div className="md:flex md:w-screen">
       <section className=" md:w-1/3 md:relative">
 
 
@@ -108,27 +96,28 @@ const handleClick = () => {
           <img src="./src/images/bgM.png" alt="React Image" className="block md:hidden object-cover h-full w-full" />
         </div>
 
-        
-        <div className="fixed">
-          <CardBack className="text-white" cvc={cvc}/>
-        </div>
+       
+        <div className="md:hidden relative flex  flex-col justify-cente">
+            <CardBack className="text-white" cardHolderName={cardHolderName} cardNumber={cardNumber} expiryMonth={expiryMonth}  expiryYear={expiryYear}/>
+          </div>
 
-        <div className="fixed">
-          <CardFront className="text-white" cardHolderName={cardHolderName} cardNumber={cardNumber} expiryMonth={expiryMonth}  expiryYear={expiryYear}/>
-        </div>
+          <div className="relative flex  flex-col justify-center">
+            <CardFront className="text-white" cardHolderName={cardHolderName} cardNumber={cardNumber} expiryMonth={expiryMonth}  expiryYear={expiryYear} cvc={cvc}/>
+          </div>
+       
 
       </section>
 
 
 {/* FORM */}
-      <section className="mx-10 md:mx-0 md:w-2/3 flex mt-10 md:mt-0 items-center justify-center">
+      <section className="mx-10 md:mx-0 md:w-2/3 flex mt-20 md:mt-0 items-center justify-center">
         <div className="w-96">
 
 
           <form onSubmit={handleSubmit(onSubmitHandler)}>
             <p className="mb-1 text-xs font-space-grotesk">CARDHOLDER NAME</p>
             <input
-              className="border border-zinc-200 text-zinc-100 font-space-grotesk rounded-lg pl-4 p-2 mb-4 w-full outline-purple-800"
+              className="border border-zinc-200 text-zinc-900 font-space-grotesk rounded-lg pl-4 p-2 mb-4 w-full outline-purple-800"
               placeholder="e.g. Jane Appleseed"
               name="cardHolderName"
               {...register('cardHolderName', { required: true })}/>
@@ -140,7 +129,7 @@ const handleClick = () => {
 
               <p className="mt-4 mb-1 text-xs font-space-grotesk">CARD NUMBER</p>
             <input
-              className="border border-zinc-200 text-zinc-100 font-space-grotesk  rounded-lg pl-4  p-2 mb-4 w-full outline-purple-800"
+              className="border border-zinc-200 text-zinc-900 font-space-grotesk  rounded-lg pl-4  p-2 mb-4 w-full outline-purple-800"
               placeholder='e.g. 1234 5678 9123 0000'
               name="cardNumber"
               {...register('cardNumber', { required: true })}
@@ -157,7 +146,7 @@ const handleClick = () => {
               <div>
                 <p className='mb-2'>EXP. DATE (MM/YY)</p>
                 <input
-                  className="border border-zinc-200 font-space-grotesk rounded-lg p-3 mb-4 w-16 md:w-20 text-center mr-4 outline-purple-800"
+                  className="border border-zinc-200 text-zinc-900 font-space-grotesk rounded-lg p-3 mb-4 w-16 md:w-20 text-center mr-4 outline-purple-800"
                   placeholder="MM"
                   name="expiryMonth"
                   {...register('expiryMonth', { required: true })}
@@ -170,7 +159,7 @@ const handleClick = () => {
 
 
                 <input
-                  className="border border-zinc-200  rounded-lg p-3 mb-4 w-16 md:w-20 text-center outline-purple-800"
+                  className="border border-zinc-200 text-zinc-900  rounded-lg p-3 mb-4 w-16 md:w-20 text-center outline-purple-800"
                   placeholder="YY"
                   name="expiryYear"
                   {...register('expiryYear', { required: true })}
@@ -186,7 +175,7 @@ const handleClick = () => {
               <div>
                 <p className='mb-2'>CVC</p>
                 <input
-                  className="border border-zinc-200  text- rounded-lg p-3  mb-2 w-32 md:w-full text-start outline-purple-800"
+                  className="border border-zinc-200  text-zinc-900 rounded-lg p-3  mb-2 w-32 md:w-full text-start outline-purple-800"
                   placeholder="e.g. 123"
                   name="cvc"
                   {...register('cvc', { required: true })}

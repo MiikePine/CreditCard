@@ -9,10 +9,10 @@ function Ty ({cvc, cardHolderName, cardNumber, expiryMonth, expiryYear}) {
                 <div className="h-screen">
                     <img src="./src/images/bgM.png" alt="React Image" className="object-cover h-full w-full" />
                 </div>
-                <div className="sticky">
+                {/* <div className="sticky">
                     <CardBack className="text-white" cvc={cvc} />
                 </div>
-        
+         */}
                 <div className="sticky mt-10">
                     <CardFront
                         cardHolderName={cardHolderName}
