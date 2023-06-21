@@ -109,7 +109,8 @@ const App = () => {
 
       </section>
 
-      <Form handleSubmit={handleSubmit(onSubmitHandler)} errors={errors} register={register}  onSubmitHandler={onSubmitHandler}/>
+      {/* <Form handleSubmit={onSubmitHandler} errors={errors} register={register} onSubmitHandler={onSubmitHandler} /> */}
+      <Form handleSubmit={handleSubmit} errors={errors} register={register} onSubmitHandler={onSubmitHandler} />
 
 
 {/* FORM */}
