@@ -8,6 +8,9 @@ import CardFront from './components/CardFront';
 import Ty from './Ty';
 import { useState } from 'react';
 import Form from './components/Form';
+import bgD from './images/bgD.png';
+import bgM from './images/bgM.png';
+
 
   const validationSchema = Yup.object().shape({
 
@@ -90,11 +93,11 @@ const App = () => {
 
 
         <div className=" md:h-screen">
-          <img src="./src/images/bgD.png" alt="React Image" className="hidden md:block object-cover absolute h-full w-full" />
+        <img src={bgD} alt="React Image" className="hidden md:block object-cover absolute h-full w-full" />
         </div>
 
         <div className="w-full">
-          <img src="./src/images/bgM.png" alt="React Image" className="block md:hidden object-cover h-full w-full" />
+        <img src={bgM} alt="React Image" className="block md:hidden object-cover h-full w-full" />
         </div>
 
        
