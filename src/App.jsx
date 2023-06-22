@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import CardFront from './components/CardFront';
-import Ty from './Ty';
+import Ty from './components/Ty';
 import { useState } from 'react';
 import Form from './components/Form';
 import bgD from './images/bgD.png';
@@ -101,11 +101,11 @@ const App = () => {
         </div>
 
        
-        <div className="md:hidden relative flex  flex-col justify-cente">
-            <CardBack className="text-white" cardHolderName={cardHolderName} cardNumber={cardNumber} expiryMonth={expiryMonth}  expiryYear={expiryYear}/>
+        <div className="relative flex  flex-col justify-center -z-100">
+            <CardBack className="text-white" cardHolderName={cardHolderName} cardNumber={cardNumber} expiryMonth={expiryMonth}  expiryYear={expiryYear} cvc={cvc}/>
           </div>
 
-          <div className="relative flex  flex-col justify-center">
+          <div className="relative flex  flex-col justify-center -z-100">
             <CardFront className="text-white" cardHolderName={cardHolderName} cardNumber={cardNumber} expiryMonth={expiryMonth}  expiryYear={expiryYear} cvc={cvc}/>
           </div>
        
