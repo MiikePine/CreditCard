@@ -101,11 +101,11 @@ const App = () => {
         </div>
 
        
-        <div className="relative flex  flex-col justify-center -z-100">
+        <div className="relative flex  flex-col justify-center z-10">
             <CardBack className="text-white" cardHolderName={cardHolderName} cardNumber={cardNumber} expiryMonth={expiryMonth}  expiryYear={expiryYear} cvc={cvc}/>
           </div>
 
-          <div className="relative flex  flex-col justify-center -z-100">
+          <div className="relative flex  flex-col justify-center z-20">
             <CardFront className="text-white" cardHolderName={cardHolderName} cardNumber={cardNumber} expiryMonth={expiryMonth}  expiryYear={expiryYear} cvc={cvc}/>
           </div>
        

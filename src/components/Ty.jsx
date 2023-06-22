@@ -19,18 +19,21 @@ function Ty ({cvc, cardHolderName, cardNumber, expiryMonth, expiryYear}) {
                         <img src={bgM} alt="React Image" className="block md:hidden object-cover h-full w-full" />
                 </div>
 
-               
-               <div className="sticky mt-10">
-                    <CardFront className="z-100"
+               <div>
+                <div className="relative flex  flex-col justify-center z-10">
+                    <CardFront className="z-10"
                         cardHolderName={cardHolderName}
                         cardNumber={cardNumber}
                         expiryMonth={expiryMonth}
                         expiryYear={expiryYear}
                     />
-
+                    </div>
+                    
+                    <div className="">
                     <CardBack className="z-50"
                          cvc={cvc}
                     />
+                    </div>
 
 
 
@@ -38,7 +41,7 @@ function Ty ({cvc, cardHolderName, cardNumber, expiryMonth, expiryYear}) {
             </section>
         
             <section className="
-            mt-10 md:mt-0 lg:mt-10 xl:mt-10 2xl:mt-10 
+            mt-24 md:mt-0 lg:mt-10 xl:mt-10 2xl:mt-10 
             w-full md:w-2/3            md:flex items-center justify-center">
                 <div className=" grid w-full items-center justify-center">
                     <div className="grid justify-center">
