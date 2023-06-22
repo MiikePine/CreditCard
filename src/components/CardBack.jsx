@@ -10,7 +10,7 @@ function CardBack ({cvc}) {
       w-84 md:w-84 lg:w-84 xl:w-84 2xl:w-84 
 
       top-2 md:top-80 lg:top-96 xl:top-96 2xl:top-96            
-      left-10 md:left-8 lg:left-24 xl:left-18 2xl:left-72 
+      left-10 md:left-8 lg:left-36 xl:left-18 2xl:left-96
       mt-0 lg:mt-10 xl:mt-10 2xl:mt-10
        ml-6 lg:mx-auto 
       pr-2">
